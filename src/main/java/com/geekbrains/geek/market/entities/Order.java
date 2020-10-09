@@ -1,10 +1,8 @@
 package com.geekbrains.geek.market.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.geekbrains.geek.market.utils.Cart;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -35,11 +33,19 @@ public class Order {
     @Column(name = "address")
     private String address;
 
-    public Order(User user, Cart cart, String address) {
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "receiver_name")
+    private String receiverName;
+
+    public Order(User user, Cart cart, String address, String phone, String receiverName) {
         this.user = user;
         this.price = cart.getPrice();
         this.items = new ArrayList<>();
         this.address = address;
+        this.phone = phone;
+        this.receiverName = receiverName;
         cart.getItems().stream().forEach(oi -> {
             oi.setOrder(this);
             items.add(oi);
