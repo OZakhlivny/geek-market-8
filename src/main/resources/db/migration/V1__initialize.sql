@@ -40,7 +40,9 @@ create table orders (
     id                      bigserial primary key,
     user_id                 bigint references users(id),
     price                   int,
-    address                 varchar(1000)
+    address                 varchar(1000),
+    phone                   varchar(20),
+    receiver_name           varchar(32)
 );
 
 create table order_items (

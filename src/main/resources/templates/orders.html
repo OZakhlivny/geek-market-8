@@ -15,7 +15,43 @@
 
 <div class="container">
     <div th:replace="~{navigation :: navigation(Orders)}"/>
-    <h1>В разработке!!!</h1>
+    <h1>Каталог товаров</h1>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Клиент</th>
+            <th>Телефон</th>
+            <th>Адрес доставки</th>
+            <th>Получатель</th>
+            <th>Цена</th>
+            <th>Товары</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="o : ${orders}">
+            <td th:text="${o.id}"/>
+            <td th:text="${o.user.username}"/>
+            <td th:text="${o.phone}"/>
+            <td th:text="${o.address}"/>
+            <td th:text="${o.receiverName}"/>
+            <td th:text="${o.price}"/>
+            <td>
+                <table>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Количество</th>
+                    </tr>
+                    <tr th:each="oi : ${o.items}">
+                        <td th:text="${oi.product.title}"/>
+                        <td th:text="${oi.quantity}"/>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 
 </body>
